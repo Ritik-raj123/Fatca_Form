@@ -7,6 +7,14 @@
 * {
   box-sizing: border-box;
 }
+
+@media print {
+  body {
+    -webkit-print-color-adjust: exact !important; /* For Chrome, Edge, Safari */
+    print-color-adjust: exact !important;         /* Standard */
+  }
+}
+
 body {
   margin: 0;
   background: #f5f5f7;
