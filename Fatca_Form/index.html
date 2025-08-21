@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>FATCA-CRS Annexure – Individual Accounts</title>
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- html2pdf.js for one-click PDF (client-side) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  </head>
+  <body>
+    <!-- Top bar -->
+    <div class="toolbar">
+      <button class="btn" onclick="window.print()">Print</button>
+      <!-- <button class="btn" id="downloadBtn">Download PDF</button> -->
+    </div>
+
+    <div id="doc">
+      <!-- ========== PAGE 1 ========== -->
+      <div class="wrap">
+        <section class="page" id="page1">
+          <h2 class="title">Annexure 1</h2>
+          <div class="subtitle">
+            FATCA-CRS Annexure for Individual Accounts (including Sole
+            Proprietor – To be obtained with Account Opening Form for
+            Individuals)
+          </div>
+
+          <div class="row mb-3">
+            <div class="label">Account No.</div>
+            <input class="inline-field" type="text" id="accNo" placeholder="" />
+          </div>
+
+          <div class="box">
+            <strong>Details under FATCA and CRS (see instructions)</strong>
+          </div>
+
+          <p class="note">
+            (Please consult your professional tax advisor for further guidance
+            on your tax residency, if required)
+          </p>
+
+          <!-- 1. Tax residence declaration -->
+          <div class="mb-2">
+            <div class="row">
+              <p>
+                <span class="num">1.</span>Tax residence declaration – tick any
+                one, as applicable to you:<strong
+                  >(if <strong>b.</strong> is applicable then please provide all
+                  other information.)</strong
+                >
+              </p>
+            </div>
+
+            <div class="radio-line">
+              <input type="radio" name="taxRes" id="trA" checked />
+              <label for="trA"
+                >a. I am a tax resident of India and not resident of any other
+                country</label
+              >
+            </div>
+            <div class="radio-line">
+              <input type="radio" name="taxRes" id="trB" />
+              <label for="trB"
+                >b. I am a tax resident of the country/ies mentioned in the
+                table below</label
+              >
+            </div>
+
+            <table aria-label="Country TIN Table">
+              <thead>
+                <tr>
+                  <th style="width: 38%">
+                    Country<span class="small"><sup>#</sup></span>
+                  </th>
+                  <th style="width: 32%">
+                    Tax Identification Number<span class="small"
+                      ><sup>%</sup></span
+                    >
+                  </th>
+                  <th>
+                    Identification Type (TIN or Other<span class="small">%</span
+                    >, please specify)
+                  </th>
+                </tr>
+              </thead>
+              <tbody id="countryRows">
+                <tr>
+                  <td><input class="field" type="text" placeholder="" /></td>
+                  <td><input class="field" type="text" placeholder="" /></td>
+                  <td><input class="field" type="text" placeholder="" /></td>
+                </tr>
+                <tr>
+                  <td><input class="field" type="text" /></td>
+                  <td><input class="field" type="text" /></td>
+                  <td><input class="field" type="text" /></td>
+                </tr>
+                <tr>
+                  <td><input class="field" type="text" /></td>
+                  <td><input class="field" type="text" /></td>
+                  <td><input class="field" type="text" /></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div class="small">
+              <b
+                >* To also include USA, where the individual is a citizen/green
+                card holder of USA<br />
+                <sup>%</sup> In case Tax Identification Number is not available,
+                kindly provide functional equivalent</b
+              ><br /><br />
+            </div>
+          </div>
+
+          <!-- 2 - 9 -->
+          <div class="mb-2 row">
+            <span class="num">2.</span>
+            <div class="label">
+              Name of the accountholder
+              <input class="inline-field" type="text" id="name" />
+            </div>
+          </div>
+          <div class="mb-2 row">
+            <span class="num">3.</span>
+            <div class="label">
+              Customer ID <input class="inline-field" type="text" id="custId" />
+            </div>
+          </div>
+          <div class="mb-2 row">
+            <span class="num">4.</span>
+            <div class="label">
+              Father’s name <span class="small">(mandatory)</span
+              ><input class="inline-field" type="text" id="father" />
+            </div>
+          </div>
+          <div class="mb-2 row">
+            <span class="num">5.</span>
+            <div class="label">
+              Spouse’s name <span class="small">(optional)</span>
+              <input class="inline-field" type="text" id="spouse" />
+            </div>
+          </div>
+
+          <div class="mb-2">
+            <span class="num">6.</span><strong>Gender:</strong>
+            <label class="radio-line"
+              ><input type="radio" name="gender" checked /> Male</label
+            >
+            <label class="radio-line"
+              ><input type="radio" name="gender" /> Female</label
+            >
+            <label class="radio-line"
+              ><input type="radio" name="gender" /> Others</label
+            >
+          </div>
+
+          <div class="mb-2 row">
+            <span class="num">7.</span>
+            <div class="label">PAN</div>
+            <input class="inline-field" type="text" id="pan" />
+          </div>
+
+          <div class="mb-2 row">
+            <span class="num">8.</span>
+            <div class="label">
+              Aadhaar number <span class="small">(optional)</span>
+            </div>
+            <input class="inline-field" type="text" id="aadhaar" />
+          </div>
+
+          <div class="mb-2">
+            <div class="row">
+              <span class="num">9.</span>
+              <div>
+                <div>
+                  <strong>Identification Type and Identification Number</strong>
+                  <span class="small"
+                    >(Documents<sup>1</sup> submitted as proof of identity of
+                    the individual)</span
+                  >:
+                </div>
+                <div class="grid-2">
+                  <div>
+                    Name of the document submitted<br /><input
+                      class="field"
+                      type="text"
+                      id="idDocName"
+                    />
+                  </div>
+                  <div>
+                    Identification number<br /><input
+                      class="field"
+                      type="text"
+                      id="idDocNo"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 10 - 13 -->
+          <div class="mb-2">
+            <span class="num">10.</span>
+            <div class="row">
+              <div class="label">Occupation Type</div>
+              <input
+                class="inline-field"
+                type="text"
+                id="occupation"
+                placeholder="Service, Business, Others (please specify)"
+              />
+            </div>
+          </div>
+
+          <div class="mb-2 row">
+            <span class="num">11.</span>
+            <div class="label">Date of birth</div>
+            <input class="inline-field" type="date" id="dob" />
+          </div>
+          <div class="mb-2 row">
+            <span class="num">12.</span>
+            <div class="label">Nationality</div>
+            <input class="inline-field" type="text" id="nationality" />
+          </div>
+          <div class="mb-2 row">
+            <span class="num">13.</span>
+            <div class="label">City of birth</div>
+            <input class="inline-field" type="text" id="cityBirth" />
+          </div>
+
+          <div class="small">
+            <sup>1</sup> Permissible documents are:
+            <ul class="clean">
+              <li>Passport</li>
+              <li>Election ID Card</li>
+              <li>PAN Card</li>
+              <li>ID Card</li>
+              <li>Driving License</li>
+              <li>UIDAI Card</li>
+              <li>NREGA Job Card</li>
+              <li>Others</li>
+            </ul>
+          </div>
+
+          <div class="mb-2 row">
+            <span class="num">14.</span>
+            <div class="label">Country of birth</div>
+            <input class="inline-field" type="text" id="countryBirth" />
+          </div>
+
+          <div class="mb-2">
+            <span class="num">15.</span>
+            <div>
+              Residence address for tax purposes (include City, State, Country
+              &amp; Pin code)
+            </div>
+            <textarea id="taxAddress"></textarea>
+          </div>
+
+          <div class="mb-3">
+            <span class="num">16.</span>
+            <div class="row">
+              <div class="label">Address Type</div>
+              <label class="radio-line"
+                ><input type="radio" name="addrType" checked /> (a) Residential
+                or Business</label
+              >
+              <label class="radio-line"
+                ><input type="radio" name="addrType" /> (b) Residential</label
+              >
+              <label class="radio-line"
+                ><input type="radio" name="addrType" /> (c) Business</label
+              >
+              <label class="radio-line"
+                ><input type="radio" name="addrType" /> (d) Registered
+                Office</label
+              >
+            </div>
+          </div>
+
+          <div class="section-title">Certification</div>
+          <p class="mb-2">
+            I have understood the information requirements of this Form (read
+            along with the FATCA-CRS Instructions) and hereby confirm that the
+            information provided by me on this Form is true, correct, and
+            complete. I also confirm that I have read and understood the
+            FATCA-CRS Terms and Conditions and hereby accept the same.
+          </p>
+
+          <div class="grid-2">
+            <div>
+              <div class="mb-2">Name:</div>
+              <div class="mb-2">Signature:</div>
+              <div class="signature"></div>
+            </div>
+            <div>
+              <div class="mb-2">
+                Date:
+                <input
+                  class="inline-field"
+                  type="text"
+                  placeholder="__/__/____"
+                  id="certDate"
+                />
+              </div>
+              <div class="mb-2">
+                Place: <input class="inline-field" type="text" id="certPlace" />
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- ========== PAGE 2 ========== -->
+      <div class="wrap">
+        <section class="page" id="page2">
+          <div class="box">
+            <strong>FATCA-CRS Instructions</strong>
+          </div>
+          <p>
+            Details under FATCA-CRS/Foreign Tax Laws: Towards compliance with
+            tax information sharing laws, such as FATCA and CRS, we would be
+            required to seek additional personal, tax and beneficial owner
+            information and certain certifications and documentation from our
+            account holders. Such information may be sought either at the time
+            of account opening or any time subsequently. In certain
+            circumstances (including if we do not receive a valid
+            self-certification from you) we may be obliged to share information
+            on your account with relevant tax authorities. If you have any
+            questions about your tax residency, please contact your tax advisor.
+            Should there be any change in any information provided by you,
+            please ensure you advise us promptly, i.e., within 30 days. Towards
+            compliance with such laws, we may also be required to provide
+            information to any institutions such as withholding agents for the
+            purpose of ensuring appropriate withholding from the account or any
+            proceeds in relation thereto. As may be required by domestic or
+            overseas regulators/tax authorities, we may also be constrained to
+            withhold and pay out any sums from your account or close or suspend
+            your account(s).
+          </p>
+          <p>
+            If you are a US citizen or resident or green card holder, please
+            include United States in the foreign country information field along
+            with your US Tax Identification Number. Foreign Account Tax
+            Compliance provisions (commonly known as FATCA) are contained in the
+            US Hire Act 2010.
+          </p>
+          <p>
+            It is mandatory to supply a TIN or functional equivalent if the
+            country in which you are tax resident issues such identifiers. If no
+            TIN is yet available or has not yet been issued, please provide an
+            explanation and attach this to the form. Please note that you may
+            receive more than one request for information if you have multiple
+            relationships with the institution or its group entities. Therefore,
+            it is important that you respond to our request, even if you believe
+            you have already supplied any previously requested information.
+          </p>
+        </section>
+      </div>
+    </div>
+  </body>
+</html>
