@@ -16,7 +16,6 @@
 }
 
 
-
 body {
   margin: 0;
   background: #f5f5f7;
@@ -28,14 +27,11 @@ body {
   display: flex;
   align-items: center;
   margin: 10px 0;
-}
-
-.account-boxes {
-  display: flex;
+  flex-wrap: nowrap; /* keep in one row */
 }
 
 .label-box {
-  width: 100px;            /* Adjust so "Account No." fits inside */
+  width: 100px;       /* fixed label width */
   height: 30px;
   display: flex;
   align-items: center;
@@ -43,10 +39,18 @@ body {
   font-size: 14px;
   border: 1px solid #000;
   font-weight: 600;
+  flex-shrink: 0;     /* label never shrinks */
+}
+
+.account-boxes {
+  display: flex;
+  flex: 1;           /* take remaining space */
 }
 
 .account-boxes input {
-  width: 30px;
+  width: calc((100% - 26px) / 14); /* 14 inputs, 2px gap each → 13 gaps = 26px */
+  max-width: 40px;                 /* optional maximum width */
+  min-width: 20px;                 /* optional minimum width */
   height: 30px;
   text-align: center;
   font-size: 16px;
@@ -80,14 +84,13 @@ body {
 .wrap {
   display: flex;
   justify-content: center;
-  padding: 1rem;
 }
 
 .page {
   width: 100%;
   max-width: 210mm;  /* still looks like A4 on desktop */
   min-height: 297mm;
-  padding: 14mm 16mm;
+  padding: 10px 10px;
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
   overflow-x: auto;   /* optional: allow horizontal scroll if really needed */
 }
@@ -168,6 +171,14 @@ body {
   gap: 10px;
   margin-bottom: 12px;
 }
+
+.place-row {
+  display: flex;
+  align-items: center;
+  gap: 5px; /* space between label and input */
+}
+
+
 .signature {
   width: 220px;
   height: 40px;
