@@ -9,6 +9,8 @@
 
     <!-- html2pdf.js for one-click PDF (client-side) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="script.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
   </head>
   <body>
     <!-- Top bar -->
@@ -33,20 +35,20 @@
     <div class="label-box">Account No.</div>
   <div class="account-boxes">
     <!-- 14 boxes for 14 characters -->
-    <input type="text" maxlength="1" />
-    <input type="text" maxlength="1" />
-    <input type="text" maxlength="1" />
-    <input type="text" maxlength="1" />
-    <input type="text" maxlength="1" />
-    <input type="text" maxlength="1" />
-    <input type="text" maxlength="1" />
-    <input type="text" maxlength="1" />
-    <input type="text" maxlength="1" />
-    <input type="text" maxlength="1" />
-    <input type="text" maxlength="1" />
-    <input type="text" maxlength="1" />
-    <input type="text" maxlength="1" />
-    <input type="text" maxlength="1" />
+    <input class="account-input" type="text" maxlength="1" />
+    <input class="account-input" type="text" maxlength="1" />
+    <input class="account-input" type="text" maxlength="1" />
+    <input class="account-input" type="text" maxlength="1" />
+    <input class="account-input" type="text" maxlength="1" />
+    <input class="account-input" type="text" maxlength="1" />
+    <input class="account-input" type="text" maxlength="1" />
+    <input class="account-input" type="text" maxlength="1" />
+    <input class="account-input" type="text" maxlength="1" />
+    <input class="account-input" type="text" maxlength="1" />
+    <input class="account-input" type="text" maxlength="1" />
+    <input class="account-input" type="text" maxlength="1" />
+    <input class="account-input" type="text" maxlength="1" />
+    <input class="account-input text-input" type="text" maxlength="1" />
   </div>
 </div>
 
@@ -61,7 +63,7 @@
           </p>
 
           <!-- 1. Tax residence declaration -->
-          <div class="mb-2">
+          <div>
             <div class="row">
               <p>
                 <span class="num">1.</span>Tax residence declaration – tick any
@@ -72,20 +74,42 @@
               </p>
             </div>
 
-            <div class="radio-line">
-              <input type="radio" name="taxRes" id="trA" checked />
-              <label for="trA"
-                >a. I am a tax resident of India and not resident of any other
-                country</label
-              >
-            </div>
-            <div class="radio-line">
-              <input type="radio" name="taxRes" id="trB" />
-              <label for="trB"
-                >b. I am a tax resident of the country/ies mentioned in the
-                table below</label
-              >
-            </div>
+  <div class="radio-container">
+  <div class="radio-line">
+    <span>a.</span>
+    <input type="radio" name="taxRes" id="trA" />
+    <label for="trA">
+      I am a tax resident of India and not resident of any other country
+    </label>
+  </div>
+
+  <div class="or-text">Or</div>
+
+  <div class="radio-line">
+    <span>b.</span>
+    <input type="radio" name="taxRes" id="trB" />
+    <label for="trB">
+      I am a tax resident of the country/ies mentioned in the table below
+    </label>
+  </div>
+</div>
+
+<script>
+  let lastChecked = null;
+
+  document.querySelectorAll("input[type=radio][name=taxRes]").forEach(radio => {
+    radio.addEventListener("click", function () {
+      if (lastChecked === this) {
+        this.checked = false; // deselect on second click
+        lastChecked = null;
+      } else {
+        lastChecked = this; // store this as last checked
+      }
+    });
+  });
+</script>
+
+
 
             <table aria-label="Country TIN Table">
               <thead>
@@ -106,19 +130,19 @@
               </thead>
               <tbody id="countryRows">
                 <tr>
-                  <td><input class="field" type="text" placeholder="" /></td>
-                  <td><input class="field" type="text" placeholder="" /></td>
-                  <td><input class="field" type="text" placeholder="" /></td>
+                  <td><input class="field text-input" type="text" placeholder="" /></td>
+                  <td><input class="field text-input" type="text" placeholder="" /></td>
+                  <td><input class="field text-input" type="text" placeholder="" /></td>
                 </tr>
                 <tr>
-                  <td><input class="field" type="text" /></td>
-                  <td><input class="field" type="text" /></td>
-                  <td><input class="field" type="text" /></td>
+                  <td><input class="field text-input" type="text" /></td>
+                  <td><input class="field text-input" type="text" /></td>
+                  <td><input class="field text-input" type="text" /></td>
                 </tr>
                 <tr>
-                  <td><input class="field" type="text" /></td>
-                  <td><input class="field" type="text" /></td>
-                  <td><input class="field" type="text" /></td>
+                  <td><input class="field text-input text-input" type="text" /></td>
+                  <td><input class="field text-input text-input" type="text" /></td>
+                  <td><input class="field text-input text-input" type="text" /></td>
                 </tr>
               </tbody>
             </table>
@@ -137,43 +161,54 @@
           <div class="question">
             <span class="num">2.</span>
             Name of the accountholder
-            <input class="inline-field" type="text" id="name" />
+            <input class="inline-field  text-input" type="text" id="name" />
           </div>
 
           <div class="question">
             <span class="num">3.</span>
             Customer ID
-            <input class="inline-field" type="text" id="custId" />
+            <input class="inline-field  text-input" type="text" id="custId" />
           </div>
 
           <div class="question">
             <span class="num">4.</span>
             Father’s name <span class="small">(mandatory)</span
-            ><input class="inline-field" type="text" id="father" />
+            ><input class="inline-field text-input" type="text" id="father" />
           </div>
 
           <div class="question">
             <span class="num">5.</span>
             Spouse’s name <span class="small">(optional)</span>
-            <input class="inline-field" type="text" id="spouse" />
+            <input class="inline-field text-input" type="text" id="spouse" />
           </div>
 
-          <div class="question">
-            <span class="num">6.</span>Gender:
-            <input class="inline-field" type="text" id="gender"/>
-            <span>(Male, Female, Others)</span>
-          </div>
+        <div class="question">
+  <span class="num">6.</span> Gender:
+  <input 
+    class="inline-field text-input" 
+    type="text" 
+    id="gender" 
+    list="genderOptions" 
+  />
+  <datalist id="genderOptions">
+    <option value="Male"></option>
+    <option value="Female"></option>
+    <option value="Others"></option>
+  </datalist>
+  <span>(Male, Female, Others)</span>
+</div>
+
 
           <div class="question">
             <span class="num">7.</span>
             PAN
-            <input class="inline-field" type="text" id="pan" />
+            <input class="inline-field text-input" type="text" id="pan" />
           </div>
 
           <div class="question">
             <span class="num">8.</span>
             Aadhaar number <span class="small">(optional)</span>
-            <input class="inline-field" type="text" id="aadhaar" />
+            <input class="inline-field text-input" type="text" id="aadhaar" />
           </div>
 
           <div class="question">
@@ -182,9 +217,9 @@
                     >(Documents<sup>1</sup> submitted as proof of identity of
                     the individual)</span
                   >:  Name of the document submitted
-            <input class="inline-field" type="text" id="idDocName" />
+            <input class="inline-field text-input" type="text" id="idDocName" />
             Identification number<input
-                      class="inline-field"
+                      class="inline-field text-input"
                       type="text"
                       id="idDocNo"
                     />
@@ -195,27 +230,27 @@
             <span class="num">10.</span>
 
             Occupation Type
-            <input class="inline-field" type="text" id="occupation" />
+            <input class="inline-field text-input" type="text" id="occupation" />
             <span>(Service, Business, Others Please specify)</span>
           </div>
 
           <div class="question">
             <span class="num">11.</span>
             Date of birth
-            <input class="inline-field" type="date" id="dob" />
+            <input class="inline-field text-input" type="date" id="dob" />
             <span>(in DD/MM/YYYY format)</span>
           </div>
 
           <div class="question">
             <span class="num">12.</span>
             Nationality
-            <input class="inline-field" type="text" id="nationality" />
+            <input class="inline-field text-input" type="text" id="nationality" />
           </div>
 
           <div class="question">
             <span class="num">13.</span>
             City of birth
-            <input class="inline-field" type="text" id="cityBirth" />
+            <input class="inline-field text-input" type="text" id="cityBirth" />
           </div>
 
           <div class="question">
@@ -235,21 +270,21 @@
           <div class="question">
             <span class="num">14.</span>
             Country of birth
-            <input class="inline-field" type="text" id="countryBirth" />
+            <input class="inline-field text-input" type="text" id="countryBirth" />
           </div>
 
           <div class="question">
             <span class="num">15.</span>
               Residence address for tax purposes (include City, State, Country
               &amp; Pin code)
-             <input class="inline-field" type="text" id="address" />
+             <input class="inline-field text-input" type="text" id="address" />
           </div>
 
          
             <div class="question">
               <span class="num">16.</span>
               Address Type
-            <input class="inline-field" type="text" id="" /><span
+            <input class="inline-field text-input" type="text" id="" /><span
               >(a) Residential or Business (b) Residential (c) Business (d)
               Registered Office</span
             >
@@ -266,8 +301,8 @@
 
           <div class="grid-2">
             <div>
-              <div class="mb-2">Name:</div>
-              <div class="mb-2">Signature:</div>
+              <div>Name:</div>
+              <div>Signature:</div>
               <div class="signature"></div>
             </div>
           </div>
@@ -276,7 +311,7 @@
             <div>
               Date:
               <input
-                class="inline-field"
+                class="inline-field text-input"
                 type="date"
                 placeholder="__/__/____"
                 id="certDate"
@@ -284,7 +319,7 @@
             </div >
             <div class="place-row">
               Place: 
-              <input class="inline-field" type="text" id="certPlace" />
+              <input class="inline-field text-input" type="text" id="certPlace" />
             </div>
           </div>   
       
