@@ -86,21 +86,32 @@ body {
 }
 
 
-/* Ensure A4-like layout */
+/* Ensure A4-like layout but responsive */
 .page {
-  width: 210mm;       /* A4 width */
-  min-height: 297mm;  /* A4 height */
-  padding: 10mm;      /* space inside (adjust as needed) */
-  margin: auto;       /* center on screen */
+  width: 100%;               /* Take full width of screen */
+  max-width: 210mm;          /* But don't exceed A4 size */
+  min-height: 297mm;         /* A4 height */
+  padding: 5vw;              /* Scales padding with screen size */
+  margin: auto;
   background: white;
   box-sizing: border-box;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  overflow-x: auto;          /* Allow horizontal scroll if needed */
 }
+
+/* For small screens, reduce padding so form fits better */
+@media (max-width: 768px) {
+  .page {
+    padding: 10px;
+    min-height: auto; /* Let height shrink on small screens */
+  }
+}
+
 
 /* Optional: If you want borders like real paper */
 .page {
   box-shadow: 0 0 5px rgba(0,0,0,0.2);
 }
-
 
 .page + .page {
   margin-top: 1rem;
