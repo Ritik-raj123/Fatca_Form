@@ -358,4 +358,43 @@ input:-webkit-autofill {
   caret-color: #000; /* caret color */
 }
 
+/* === Scoped layout just for the Date + Place row === */
+.cert-row {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;         /* space between Date and Place blocks */
+  flex-wrap: nowrap;    /* keep on one line */
+  min-width: 0;         /* allow children to shrink */
+}
+
+.cert-field {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;          /* space between label and input */
+  flex: 1 1 0;          /* both sides share space and can shrink */
+  min-width: 0;         /* critical for shrinking inputs */
+}
+
+.cert-input {
+  flex: 1 1 8rem;       /* input grows, but can shrink */
+  min-width: 0;         /* prevent overflow */
+  width: 100%;          /* fill available space within the field */
+}
+
+/* Tame the native date input width so it can shrink */
+.cert-input[type="date"] {
+  width: 100%;
+}
+
+/* Optional: on very narrow screens, allow wrap instead of overflow */
+@media (max-width: 420px) {
+  .cert-row {
+    flex-wrap: wrap;       /* stack if absolutely necessary */
+    row-gap: 0.75rem;
+  }
+  .cert-field {
+    flex: 1 1 100%;
+  }
+}
+
 
